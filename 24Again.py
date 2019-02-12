@@ -11,7 +11,17 @@ def Olah(sco, ope, num):
     else:
         return sco/num
 
-def Score(sco, ope, num):
+def op(oper):
+    if (oper == 5):
+        return "+"
+    elif (oper == 4):
+        return "-"
+    elif (oper == 3):
+        return "*"
+    else:
+        return "/"
+
+def Score1(sco, ope, num):
     if (ope == 5):
         return sco + ope - Close(sco+num) 
     elif (ope == 4):
@@ -29,6 +39,7 @@ arr.append(int(input("Bilangan ketiga    : ")))
 arr.append(int(input("Bilangan keempat   : ")))
 
 num = arr[0]
+res = []
 opp = []
 ind = 0
 tmp = 0
@@ -37,7 +48,7 @@ for i in range(1,4):
     if (arr[i] > num):
         num = arr[i]
         ind = i
-
+res.append(arr[ind])
 del arr[ind]
 
 ind = 0
@@ -48,25 +59,18 @@ while (arr != []):
     cho = -999
     for i in range(0,4):
         ope = 5-i
-        print(ope)
         for j  in range(0,neff):
             sc = Score(num,ope,arr[j])
             if (cho  < sc):
-                print("caught")
                 cho = sc
                 ind = j
                 tmp = ope
-                print(j)
-                print(arr)
     te = arr[ind]
-    print(ind)
-    print(arr)
     num = Olah(num,tmp,te)
     opp.append(tmp)
+    res.append(op(tmp))
+    res.append(arr[ind])
     del arr[ind]
-    print(cho)
-    print(arr)
-    print(opp)
-    print(num)
-    print()
     neff -= 1
+
+print(res)
