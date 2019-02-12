@@ -11,6 +11,7 @@ def accept(l1, l2):
                 return 2
         else:
             return 0
+    return 0
 
 def Olah(sco, ope, num):
     if (ope == 5):
@@ -48,9 +49,9 @@ for i in range(0,3):
             tmp = Olah(arr[i],oper,arr[j])
             ph2.append([tmp,i,j,oper])
 
-
 for l1 in ph2:
     for l2 in ph2:
         if(accept(l1,l2)):
-            print("(",arr[l1[1]], op(l1[3]), arr[l1[2]] , ")",op(accept(l1,l2)),"(",arr[l2[1]], op(l2[3]), arr[l2[2]] , ")")
+            print([arr[l1[1]], op(l1[3]), arr[l1[2]] ,op(accept(l1,l2)),arr[l2[1]], op(l2[3]), arr[l2[2]]])
+            
             print()
