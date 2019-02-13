@@ -23,7 +23,7 @@ def distToTarget(some_value, target_value):
 def determineTarget(operandRemaining):
     return {
         1 : 24,
-        2 : ,
+        2 : 26,
         3 : 21,
         4 : 10,
     }[operandRemaining]
