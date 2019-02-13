@@ -1,5 +1,5 @@
-def Close(sco, tar):
-    return (abs(tar-sco))
+def Close(sco):
+    return (abs(24-sco))
 
 def Olah(sco, ope, num):
     if (ope == 5):
@@ -11,13 +11,25 @@ def Olah(sco, ope, num):
     else:
         return sco/num
 
-def targ(n):
-    if (n == 1):
-        return 24
-    elif(n == 2):
-        return 20
+def op(oper):
+    if (oper == 5):
+        return "+"
+    elif (oper == 4):
+        return "-"
+    elif (oper == 3):
+        return "*"
     else:
-        return 10
+        return "/"
+
+def Score(sco, ope, num):
+    if (ope == 5):
+        return ope - Close(sco+num) 
+    elif (ope == 4):
+        return ope - Close(sco-num) 
+    elif (ope == 3):
+        return ope - Close(sco*num) 
+    else:
+        return ope - Close(sco/num) 
 
 def nilai(oper):
     if (oper == "+"):
@@ -29,36 +41,14 @@ def nilai(oper):
     else:
         return 2
 
-def op(oper):
-    if (oper == 5):
-        return "+"
-    elif (oper == 4):
-        return "-"
-    elif (oper == 3):
-        return "*"
-    else:
-        return "/"
-
-def Score2(sco, ope, num, n):
-    if (ope == 5):
-        return sco + ope - Close(sco+num,targ(n)) - (sco+num) % 4
-    elif (ope == 4):
-        return sco + ope - Close(sco-num,targ(n)) - (sco-num) % 4
-    elif (ope == 3):
-        return sco + ope - Close(sco*num,targ(n)) - (sco*num) % 4
-    else:
-        return sco + ope - Close(sco/num,targ(n)) - (sco/num) % 4
-
-
 def result(res,num):
-    n = nilai(res[1]) + nilai(res[3]) + nilai(res[5]) - Close(num,24)
+    n = nilai(res[1]) + nilai(res[3]) + nilai(res[5]) - Close(num)
     if ((res[3] == "*") | (res[3] == "/")) & ((res[1] == "+") | (res[1] == "-")):
         print("(",res[0],res[1],res[2],")",res[3], res[4], res[5], res[6])
         print(n-2)
     else:
         print(res[0],res[1],res[2],res[3], res[4], res[5], res[6])
         print(n)
-
 """ Program utama """
 flag = True
 file = open("debug.txt")
@@ -70,7 +60,6 @@ while (True):
     arr[1] = int(arr[1])
     arr[2] = int(arr[2])
     arr[3] = int(arr[3])
-
     num = arr[0]
     res = []
     opp = []
@@ -93,7 +82,7 @@ while (True):
         for i in range(0,4):
             ope = 5-i
             for j  in range(0,neff):
-                sc = Score2(num,ope,arr[j],neff)
+                sc = Score(num,ope,arr[j])
                 if (cho  < sc):
                     cho = sc
                     ind = j
@@ -105,5 +94,4 @@ while (True):
         res.append(arr[ind])
         del arr[ind]
         neff -= 1
-
     result(res,num)
