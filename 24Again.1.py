@@ -44,14 +44,15 @@ def nilai(oper):
 def result(res,num):
     n = nilai(res[1]) + nilai(res[3]) + nilai(res[5]) - Close(num)
     if ((res[3] == "*") | (res[3] == "/")) & ((res[1] == "+") | (res[1] == "-")):
-        print("(",res[0],res[1],res[2],")",res[3], res[4], res[5], res[6])
-        print(n-2)
+        file_out.write("("+str(res[0])+res[1]+str(res[2])+")"+res[3]+ str(res[4])+ res[5]+ str(res[6])+"\n")
+        #file_out.write(str(n-2))
     else:
-        print(res[0],res[1],res[2],res[3], res[4], res[5], res[6])
-        print(n)
+        file_out.write(str(res[0])+res[1]+str(res[2])+ res[3]+ str(res[4])+ res[5]+ str(res[6])+"\n")
+        #file_out.write(str(n))
 """ Program utama """
 flag = True
-file = open("debug.txt")
+file = open("debug_1.txt")
+file_out = open("outfile_1.txt","w")
 while (True):
     arr = []
     arr = file.readline().split(" ")
